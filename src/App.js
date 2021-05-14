@@ -5,16 +5,7 @@ import './App.css';
 
 
 const App = () => {
-  const [characters, setCharacters] = useState([{
-    name:'Placeholder',
-    gender:'placeholder',
-    height: 'Placeholder',
-    mass: 'Placeholder',
-    hair_color: 'Placeholder',
-    skin_color: 'Placeholder',
-    eye_color: 'Placeholder',
-    birth_year: 'Placeholder'
-}, ])
+  const [characters, setCharacters] = useState([])
   useEffect(() => {
     axios.get("https://swapi.dev/api/people")
     .then((data => {
@@ -22,12 +13,12 @@ const App = () => {
     }))
   }, []);
 
-  console.log(characters);
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
       {characters.map(character => {
         return (<Character characterObj={character}/>)
+        /* Iterate through each Character and add a new Character Component for each one to the DOM using React.*/
       })}
     </div>
   );

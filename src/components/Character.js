@@ -16,9 +16,12 @@ const StyledCharacter = styled.div`
 
 const CollapsableInfo = styled.p`
     & {
+        /* add animation to button */
         transition: max-height 1.5s;
+        /* allows toggle for details*/
         max-height: ${props =>  (props.visible === true) ? '500px' : "0"};
         text-align:left;
+        /* hides content when box is smaller than details */
         overflow: hidden;
     }
 `
@@ -46,6 +49,7 @@ const StyledContainer = styled.div`
 `
 
 const StyledGender = styled.span`
+    /* some small styling to make gender look neater */
     color: ${props => {
         switch(props.gender){
             case 'male':
@@ -63,26 +67,27 @@ const Character = (props) => {
     const toggleIsVisible = () => {
         setIsVisible((bool) => !bool)
     }
-
     if (characterObj !== null) {
-    return(
-        <StyledCharacter>
-            <StyledContainer>
-                <h2 style={{background: "gray"}}>{characterObj.name}</h2>
-                <button onClick={() => {toggleIsVisible()}}>Toggle Info</button>
-            </StyledContainer>
-            <CollapsableInfo visible={isVisible}>
-                <StyledGender gender={characterObj.gender}>Gender: {characterObj.gender}<br/></StyledGender>
-                <span>Height: {characterObj.height}<br/></span>
-                <span>Weight: {characterObj.mass}<br/></span>
-                <span>Hair Color: {characterObj.hair_color}<br/></span>
-                <span>Skin Color: {characterObj.skin_color}<br/></span>
-                <span>Eye Color: {characterObj.eye_color}<br/></span>
-                <span>Birth Year: {characterObj.birth_year}<br/></span>
-            </CollapsableInfo>
-        </StyledCharacter>
-    )}
+    /* Only return an element when data has loaded */
+        return(
+            <StyledCharacter>
+                <StyledContainer>
+                    <h2 style={{background: "gray"}}>{characterObj.name}</h2>
+                    <button onClick={() => {toggleIsVisible()}}>Toggle Info</button>
+                </StyledContainer>
+                <CollapsableInfo visible={isVisible}>
+                    <StyledGender gender={characterObj.gender}>Gender: {characterObj.gender}<br/></StyledGender>
+                    <span>Height: {characterObj.height}<br/></span>
+                    <span>Weight: {characterObj.mass}<br/></span>
+                    <span>Hair Color: {characterObj.hair_color}<br/></span>
+                    <span>Skin Color: {characterObj.skin_color}<br/></span>
+                    <span>Eye Color: {characterObj.eye_color}<br/></span>
+                    <span>Birth Year: {characterObj.birth_year}<br/></span>
+                </CollapsableInfo>
+            </StyledCharacter>
+        )}
     else return null;
+    
 }
 
 export default Character;
