@@ -5,7 +5,7 @@ import './App.css';
 
 
 const App = () => {
-  const [characters, setCharacters] = useState([])
+  const [characters, setCharacters] = useState([{},])
   useEffect(() => {
     axios.get("https://swapi.dev/api/people")
     .then((data => {
